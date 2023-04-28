@@ -1,0 +1,29 @@
+body {
+  font-size: 25px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: 0px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button.player1 {
+  background-color: lightblue;
+  color: black;
+}
+
+button.player2 {
+  background-color: green;
+  color: white;
+}
+
+button.reset {
+  background-color: red;
+  color: white;
+}
