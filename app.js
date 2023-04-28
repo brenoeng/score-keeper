@@ -7,10 +7,7 @@ but1.addEventListener("click", function () {
   if (Number(spanP1.innerText) === Number(select.value)) {
     spanP1.style.color = "green";
     spanP2.style.color = "red";
-    but1.style.cursor = "not-allowed";
-    but2.style.cursor = "not-allowed";
-    but1.setAttribute("disabled", true);
-    but2.setAttribute("disabled", true);
+    winner();
   }
 });
 
@@ -21,10 +18,7 @@ but2.addEventListener("click", function () {
   if (Number(spanP2.innerText) === Number(select.value)) {
     spanP1.style.color = "red";
     spanP2.style.color = "green";
-    but1.style.cursor = "not-allowed";
-    but2.style.cursor = "not-allowed";
-    but1.setAttribute("disabled", true);
-    but2.setAttribute("disabled", true);
+    winner();
   }
 });
 
@@ -36,6 +30,13 @@ butReset.addEventListener("click", function () {
   spanP2.style.color = "black";
   but1.style.cursor = "pointer";
   but2.style.cursor = "pointer";
-  but1.removeAttribute("disabled");
-  but2.removeAttribute("disabled");
+  but1.disabled = false;
+  but2.disabled = false;
 });
+
+const winner = function () {
+  but1.style.cursor = "not-allowed";
+  but2.style.cursor = "not-allowed";
+  but1.disabled = true;
+  but2.disabled = true;
+};
