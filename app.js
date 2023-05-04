@@ -1,42 +1,45 @@
+const p1 = {
+  display: document.querySelector(".p1"),
+  button: document.querySelector(".player1"),
+};
+
+const p2 = {
+  display: document.querySelector(".p2"),
+  button: document.querySelector(".player2"),
+};
+
 const select = document.querySelector("select");
-
-const spanP1 = document.querySelector(".p1");
-const but1 = document.querySelector(".player1");
-but1.addEventListener("click", function () {
-  spanP1.innerText = Number(spanP1.innerText) + 1;
-  if (Number(spanP1.innerText) === Number(select.value)) {
-    spanP1.style.color = "green";
-    spanP2.style.color = "red";
-    winner();
-  }
-});
-
-const spanP2 = document.querySelector(".p2");
-const but2 = document.querySelector(".player2");
-but2.addEventListener("click", function () {
-  spanP2.innerText = Number(spanP2.innerText) + 1;
-  if (Number(spanP2.innerText) === Number(select.value)) {
-    spanP1.style.color = "red";
-    spanP2.style.color = "green";
-    winner();
-  }
-});
-
 const butReset = document.querySelector(".reset");
-butReset.addEventListener("click", function () {
-  spanP1.innerText = 0;
-  spanP2.innerText = 0;
-  spanP1.style.color = "black";
-  spanP2.style.color = "black";
-  but1.style.cursor = "pointer";
-  but2.style.cursor = "pointer";
-  but1.disabled = false;
-  but2.disabled = false;
+
+p1.button.addEventListener("click", function () {
+  winner(p1, p2);
 });
 
-const winner = function () {
-  but1.style.cursor = "not-allowed";
-  but2.style.cursor = "not-allowed";
-  but1.disabled = true;
-  but2.disabled = true;
+p2.button.addEventListener("click", function () {
+  winner(p2, p1);
+});
+
+butReset.addEventListener("click", function () {
+  reset([p1, p2]);
+});
+
+const winner = function (player, opponent) {
+  player.display.innerText = Number(player.display.innerText) + 1;
+  if (Number(player.display.innerText) === Number(select.value)) {
+    player.display.style.color = "green";
+    opponent.display.style.color = "red";
+    player.button.style.cursor = "not-allowed";
+    opponent.button.style.cursor = "not-allowed";
+    player.button.disabled = true;
+    opponent.button.disabled = true;
+  }
+};
+
+const reset = function (players) {
+  players.forEach((p) => {
+    p.display.innerText = 0;
+    p.display.style.color = "black";
+    p.button.style.cursor = "pointer";
+    p.button.disabled = false;
+  });
 };
